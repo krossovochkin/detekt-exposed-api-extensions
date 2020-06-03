@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'kotlin'
+    id 'maven-publish'
 }
 
 java {
@@ -18,8 +19,21 @@ dependencies {
     testImplementation "io.gitlab.arturbosch.detekt:detekt-test:1.9.0"
 }
 
-test {
-    useJUnitPlatform {
-        includeEngines 'spek2'
+task sourceJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allJava
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.krossovochkin.detekt'
+            artifactId = 'exposed-api'
+            version = '0.1.0'
+
+            artifact tasks.sourceJar
+
+            from components.java
+        }
     }
 }
