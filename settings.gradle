@@ -1,0 +1,2 @@
+include ':detekt-extensions'
+rootProject.name = "DetektInternal"

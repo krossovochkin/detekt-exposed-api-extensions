@@ -1,0 +1,9 @@
+config:
+  validation: true
+  excludes: "library.*,library>.*>.*"
+
+library:
+  ExposedApi:
+    active: true
+    ignoreAnnotated: ["PublicApi"]
+    ignorePathRegex: [".*detekt.*"]
